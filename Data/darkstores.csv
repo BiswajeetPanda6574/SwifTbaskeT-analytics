@@ -1,0 +1,13 @@
+Store_ID,Store_Name,City,Area,Pincode,Store_Type,Service_Radius_KM,Storage_Capacity,Temperature_Control,Daily_Order_Capacity,Current_Status
+DS001,Koramangala Dark Store,Bengaluru,Koramangala,560034,Medium,3.4,2403,True,1184,Active
+DS002,HSR Layout Dark Store,Bengaluru,HSR Layout,560102,Medium,4.6,1806,True,1063,Active
+DS003,Whitefield Dark Store,Bengaluru,Whitefield,560066,Large,6.4,2948,True,1784,Active
+DS004,Indiranagar Dark Store,Bengaluru,Indiranagar,560038,Medium,3.3,2581,True,1244,Active
+DS005,Electronic City Dark Store,Bengaluru,Electronic City,560100,Micro,2.1,1589,True,649,Maintenance
+DS006,Marathahalli Dark Store,Bengaluru,Marathahalli,560037,Medium,3.7,2152,True,1170,Active
+DS007,Bellandur Dark Store,Bengaluru,Bellandur,560103,Micro,2.8,1670,True,874,Active
+DS008,JP Nagar Dark Store,Bengaluru,JP Nagar,560078,Medium,3.2,2187,True,980,Active
+DS009,Hebbal Dark Store,Bengaluru,Hebbal,560024,Medium,4.1,2443,True,1270,Active
+DS010,Yelahanka Dark Store,Bengaluru,Yelahanka,560064,Large,6.2,3321,True,1571,Active
+DS011,Rajajinagar Dark Store,Bengaluru,Rajajinagar,560010,Large,5.1,2833,True,2291,Under Expansion
+DS012,Sarjapur Road Dark Store,Bengaluru,Sarjapur Road,560035,Micro,2.3,1281,True,719,Active
