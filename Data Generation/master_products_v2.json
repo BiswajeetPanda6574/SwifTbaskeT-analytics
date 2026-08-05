@@ -1,0 +1,555 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "city": "Bengaluru",
+    "currency": "INR",
+    "generated_for": "QuickCommerce BI",
+    "last_updated": "2025-02-15"
+  },
+  "global_rules": {
+    "product_status_allowed": [
+      "Available",
+      "Low Stock",
+      "Out Of Stock",
+      "Discontinued"
+    ],
+    "rating_ranges": {
+      "Premium": { "min": 4.5, "max": 4.9 },
+      "Popular": { "min": 4.2, "max": 4.6 },
+      "Budget": { "min": 3.8, "max": 4.3 }
+    }
+  },
+  "categories": [
+    {
+      "category_name": "Fruits & Vegetables",
+      "sub_categories": [
+        {
+          "sub_category_name": "Fresh Vegetables",
+          "storage_type": "Ambient",
+          "gst_percentage": 0,
+          "base_shelf_life_days": 4,
+          "brands": [
+            { "name": "Farm Fresh", "tier": "Popular" },
+            { "name": "Unbranded", "tier": "Budget" }
+          ],
+          "items": [
+            {
+              "item_name": "Tomato",
+              "types": ["Local", "Hybrid", "Cherry"],
+              "variants": ["Regular", "Organic"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "g", "value": 500, "price_range": { "min": 15, "max": 40 } },
+                { "unit": "kg", "value": 1, "price_range": { "min": 25, "max": 75 } }
+              ]
+            },
+            {
+              "item_name": "Onion",
+              "types": ["Red", "White", "Sambhar"],
+              "variants": ["Regular", "Premium Grade"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "kg", "value": 1, "price_range": { "min": 30, "max": 60 } },
+                { "unit": "kg", "value": 5, "price_range": { "min": 140, "max": 280 } }
+              ]
+            }
+          ]
+        },
+        {
+          "sub_category_name": "Fresh Fruits",
+          "storage_type": "Refrigerated",
+          "gst_percentage": 0,
+          "base_shelf_life_days": 5,
+          "brands": [
+            { "name": "Farm Fresh", "tier": "Popular" },
+            { "name": "Zespri", "tier": "Premium" }
+          ],
+          "items": [
+            {
+              "item_name": "Apple",
+              "types": ["Royal Gala", "Washington", "Kashmiri"],
+              "variants": ["Regular", "Wax Free"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "pc", "value": 4, "price_range": { "min": 90, "max": 160 } },
+                { "unit": "kg", "value": 1, "price_range": { "min": 180, "max": 320 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Dairy, Bread & Eggs",
+      "sub_categories": [
+        {
+          "sub_category_name": "Milk",
+          "storage_type": "Refrigerated",
+          "gst_percentage": 0,
+          "base_shelf_life_days": 2,
+          "brands": [
+            { "name": "Amul", "tier": "Popular" },
+            { "name": "Nandini", "tier": "Budget" },
+            { "name": "Milky Mist", "tier": "Popular" },
+            { "name": "Akshayakalpa", "tier": "Premium" },
+            { "name": "Country Delight", "tier": "Premium" }
+          ],
+          "items": [
+            {
+              "item_name": "Milk",
+              "types": ["Cow Milk", "Buffalo Milk", "A2 Milk"],
+              "variants": ["Toned", "Full Cream", "Double Toned", "Skimmed", "Organic", "Lactose Free"],
+              "flavours": ["Plain"],
+              "sizes": [
+                { "unit": "ml", "value": 500, "price_range": { "min": 24, "max": 45 } },
+                { "unit": "L", "value": 1, "price_range": { "min": 48, "max": 90 } }
+              ]
+            }
+          ]
+        },
+        {
+          "sub_category_name": "Bread",
+          "storage_type": "Ambient",
+          "gst_percentage": 0,
+          "base_shelf_life_days": 5,
+          "brands": [
+            { "name": "The Health Factory", "tier": "Premium" },
+            { "name": "Modern", "tier": "Popular" },
+            { "name": "Brick Oven", "tier": "Premium" },
+            { "name": "Baker's Loaf", "tier": "Popular" },
+            { "name": "English Oven", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Bread Loaf",
+              "types": ["White", "Brown", "Whole Wheat", "Multigrain"],
+              "variants": ["Sandwich", "Fruit", "Garlic"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "g", "value": 200, "price_range": { "min": 20, "max": 35 } },
+                { "unit": "g", "value": 400, "price_range": { "min": 35, "max": 65 } }
+              ]
+            }
+          ]
+        },
+        {
+          "sub_category_name": "Eggs",
+          "storage_type": "Refrigerated",
+          "gst_percentage": 0,
+          "base_shelf_life_days": 21,
+          "brands": [
+            { "name": "Eggoz", "tier": "Popular" },
+            { "name": "Abhi Eggs", "tier": "Budget" },
+            { "name": "Akshayakalpa", "tier": "Premium" }
+          ],
+          "items": [
+            {
+              "item_name": "Eggs",
+              "types": ["Table Eggs", "Country Eggs"],
+              "variants": ["White", "Brown", "Omega-3 Rich", "Free Range"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "pc", "value": 6, "price_range": { "min": 45, "max": 80 } },
+                { "unit": "pc", "value": 12, "price_range": { "min": 85, "max": 150 } },
+                { "unit": "pc", "value": 30, "price_range": { "min": 200, "max": 350 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Meat & Fish",
+      "sub_categories": [
+        {
+          "sub_category_name": "Chicken",
+          "storage_type": "Refrigerated",
+          "gst_percentage": 5,
+          "base_shelf_life_days": 3,
+          "brands": [
+            { "name": "Licious", "tier": "Premium" },
+            { "name": "Relish", "tier": "Popular" },
+            { "name": "Meister", "tier": "Popular" },
+            { "name": "Unbranded", "tier": "Budget" }
+          ],
+          "items": [
+            {
+              "item_name": "Chicken",
+              "types": ["Curry Cut", "Boneless", "Mince", "Drumsticks", "Wings"],
+              "variants": ["Skinless", "With Skin", "Antibiotic Free"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "g", "value": 250, "price_range": { "min": 80, "max": 150 } },
+                { "unit": "g", "value": 500, "price_range": { "min": 150, "max": 320 } },
+                { "unit": "kg", "value": 1, "price_range": { "min": 280, "max": 550 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Staples & Grocery",
+      "sub_categories": [
+        {
+          "sub_category_name": "Atta",
+          "storage_type": "Ambient",
+          "gst_percentage": 0,
+          "base_shelf_life_days": 90,
+          "brands": [
+            { "name": "Aashirvaad", "tier": "Premium" },
+            { "name": "Fortune", "tier": "Popular" },
+            { "name": "Patanjali", "tier": "Budget" },
+            { "name": "Nature Fresh", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Chakki Atta",
+              "types": ["Wheat", "Multigrain", "Besan", "Maida"],
+              "variants": ["Sharbati", "Select", "Gluten Free"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "kg", "value": 1, "price_range": { "min": 45, "max": 80 } },
+                { "unit": "kg", "value": 5, "price_range": { "min": 210, "max": 380 } },
+                { "unit": "kg", "value": 10, "price_range": { "min": 400, "max": 720 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Snacks",
+      "sub_categories": [
+        {
+          "sub_category_name": "Munchies",
+          "storage_type": "Ambient",
+          "gst_percentage": 12,
+          "base_shelf_life_days": 180,
+          "brands": [
+            { "name": "Lay's", "tier": "Popular" },
+            { "name": "Kurkure", "tier": "Popular" },
+            { "name": "Pringles", "tier": "Premium" },
+            { "name": "Bingo", "tier": "Budget" },
+            { "name": "Haldiram's", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Chips",
+              "types": ["Potato Chips", "Corn Chips", "Nachos", "Extruded Snacks"],
+              "variants": ["Fried", "Baked", "Roasted"],
+              "flavours": ["Classic Salted", "Magic Masala", "Cream & Onion", "Tomato", "Cheese"],
+              "sizes": [
+                { "unit": "g", "value": 30, "price_range": { "min": 10, "max": 20 } },
+                { "unit": "g", "value": 90, "price_range": { "min": 30, "max": 50 } },
+                { "unit": "g", "value": 150, "price_range": { "min": 50, "max": 120 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Beverages",
+      "sub_categories": [
+        {
+          "sub_category_name": "Coffee",
+          "storage_type": "Ambient",
+          "gst_percentage": 18,
+          "base_shelf_life_days": 365,
+          "brands": [
+            { "name": "Nescafé", "tier": "Popular" },
+            { "name": "Bru", "tier": "Popular" },
+            { "name": "Bevzilla", "tier": "Premium" }
+          ],
+          "items": [
+            {
+              "item_name": "Coffee Powder",
+              "types": ["Instant", "Filter", "Roast & Ground"],
+              "variants": ["Classic", "Gold", "Decaf"],
+              "flavours": ["Original", "Hazelnut", "Vanilla", "Mocha"],
+              "sizes": [
+                { "unit": "g", "value": 50, "price_range": { "min": 80, "max": 150 } },
+                { "unit": "g", "value": 100, "price_range": { "min": 150, "max": 350 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Frozen Foods",
+      "sub_categories": [
+        {
+          "sub_category_name": "Frozen Snacks",
+          "storage_type": "Frozen",
+          "gst_percentage": 18,
+          "base_shelf_life_days": 180,
+          "brands": [
+            { "name": "McCain", "tier": "Premium" },
+            { "name": "ITC Master Chef", "tier": "Popular" },
+            { "name": "Amul", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Fries & Bites",
+              "types": ["French Fries", "Aloo Tikki", "Nuggets", "Cheese Balls"],
+              "variants": ["Veg", "Chicken"],
+              "flavours": ["Classic", "Spicy", "Masala"],
+              "sizes": [
+                { "unit": "g", "value": 400, "price_range": { "min": 120, "max": 220 } },
+                { "unit": "g", "value": 750, "price_range": { "min": 220, "max": 380 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Beauty & Personal Care",
+      "sub_categories": [
+        {
+          "sub_category_name": "Skin Care",
+          "storage_type": "Ambient",
+          "gst_percentage": 18,
+          "base_shelf_life_days": 730,
+          "brands": [
+            { "name": "Minimalist", "tier": "Premium" },
+            { "name": "The Derma Co", "tier": "Premium" },
+            { "name": "Dot & Key", "tier": "Premium" },
+            { "name": "Mamaearth", "tier": "Popular" },
+            { "name": "Nivea", "tier": "Popular" },
+            { "name": "Garnier", "tier": "Budget" }
+          ],
+          "items": [
+            {
+              "item_name": "Face Serum",
+              "types": ["Liquid Serum", "Gel"],
+              "variants": ["Brightening", "Anti-Acne", "Hydrating"],
+              "flavours": ["Vitamin C", "Niacinamide", "Salicylic Acid", "Hyaluronic Acid"],
+              "sizes": [
+                { "unit": "ml", "value": 30, "price_range": { "min": 399, "max": 799 } },
+                { "unit": "ml", "value": 50, "price_range": { "min": 599, "max": 999 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Household Essentials",
+      "sub_categories": [
+        {
+          "sub_category_name": "Cleaning Essentials",
+          "storage_type": "Ambient",
+          "gst_percentage": 18,
+          "base_shelf_life_days": 730,
+          "brands": [
+            { "name": "Vim", "tier": "Popular" },
+            { "name": "Surf Excel", "tier": "Premium" },
+            { "name": "Lizol", "tier": "Popular" },
+            { "name": "Ariel", "tier": "Premium" },
+            { "name": "Harpic", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Detergent",
+              "types": ["Powder", "Liquid", "Pods"],
+              "variants": ["Top Load", "Front Load", "Hand Wash"],
+              "flavours": ["Lemon", "Lavender", "Fresh Spring"],
+              "sizes": [
+                { "unit": "kg", "value": 1, "price_range": { "min": 110, "max": 250 } },
+                { "unit": "L", "value": 1, "price_range": { "min": 180, "max": 350 } }
+              ]
+            }
+          ]
+        },
+        {
+          "sub_category_name": "Electronics",
+          "storage_type": "Ambient",
+          "gst_percentage": 18,
+          "base_shelf_life_days": 3650,
+          "brands": [
+            { "name": "Philips", "tier": "Premium" },
+            { "name": "Syska", "tier": "Popular" },
+            { "name": "Duracell", "tier": "Premium" },
+            { "name": "Eveready", "tier": "Budget" }
+          ],
+          "items": [
+            {
+              "item_name": "Batteries",
+              "types": ["Alkaline", "Zinc Carbon", "Rechargeable"],
+              "variants": ["AA", "AAA", "9V", "Button Cell"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "pack", "value": 2, "price_range": { "min": 30, "max": 90 } },
+                { "unit": "pack", "value": 4, "price_range": { "min": 60, "max": 180 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Baby Care",
+      "sub_categories": [
+        {
+          "sub_category_name": "Baby Diapers & Wipes",
+          "storage_type": "Ambient",
+          "gst_percentage": 12,
+          "base_shelf_life_days": 1095,
+          "brands": [
+            { "name": "Pampers", "tier": "Premium" },
+            { "name": "MamyPoko", "tier": "Popular" },
+            { "name": "Huggies", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Diapers",
+              "types": ["Pant Style", "Taped"],
+              "variants": ["Standard", "Premium Care", "Aloe Vera Enriched"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "pack", "value": 30, "price_range": { "min": 350, "max": 550 } },
+                { "unit": "pack", "value": 72, "price_range": { "min": 750, "max": 1200 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Fashion & Lifestyle",
+      "sub_categories": [
+        {
+          "sub_category_name": "Apparel & Accessories",
+          "storage_type": "Ambient",
+          "gst_percentage": 12,
+          "base_shelf_life_days": 3650,
+          "brands": [
+            { "name": "Jockey", "tier": "Premium" },
+            { "name": "Puma", "tier": "Premium" },
+            { "name": "Fastrack", "tier": "Popular" },
+            { "name": "Unbranded", "tier": "Budget" }
+          ],
+          "items": [
+            {
+              "item_name": "Basic Wear",
+              "types": ["T-Shirts", "Socks", "Caps", "Belts", "Wallet"],
+              "variants": ["Cotton", "Polyester", "Leather", "Canvas"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "pc", "value": 1, "price_range": { "min": 199, "max": 999 } },
+                { "unit": "pack", "value": 3, "price_range": { "min": 299, "max": 699 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Pharmacy",
+      "sub_categories": [
+        {
+          "sub_category_name": "Pain Relief",
+          "storage_type": "Ambient",
+          "gst_percentage": 12,
+          "base_shelf_life_days": 730,
+          "brands": [
+            { "name": "Crocin", "tier": "Popular" },
+            { "name": "Dolo", "tier": "Popular" },
+            { "name": "Volini", "tier": "Popular" },
+            { "name": "Moov", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Pain Reliever",
+              "types": ["Tablet", "Spray", "Ointment", "Gel"],
+              "variants": ["Fast Action", "Standard", "Ayurvedic"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "strip", "value": 15, "price_range": { "min": 25, "max": 45 } },
+                { "unit": "g", "value": 30, "price_range": { "min": 80, "max": 150 } },
+                { "unit": "g", "value": 50, "price_range": { "min": 140, "max": 250 } }
+              ]
+            }
+          ]
+        },
+        {
+          "sub_category_name": "Cold & Flu",
+          "storage_type": "Ambient",
+          "gst_percentage": 12,
+          "base_shelf_life_days": 730,
+          "brands": [
+            { "name": "Vicks", "tier": "Popular" },
+            { "name": "Benadryl", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Cold Relief",
+              "types": ["Vaporub", "Syrup", "Lozenges", "Inhaler"],
+              "variants": ["Standard", "Extra Strong", "Non-Drowsy"],
+              "flavours": ["Menthol", "Ginger", "Honey", "Tulsi"],
+              "sizes": [
+                { "unit": "g", "value": 25, "price_range": { "min": 45, "max": 80 } },
+                { "unit": "ml", "value": 100, "price_range": { "min": 90, "max": 130 } }
+              ]
+            }
+          ]
+        },
+        {
+          "sub_category_name": "Medical Devices",
+          "storage_type": "Ambient",
+          "gst_percentage": 18,
+          "base_shelf_life_days": 1825,
+          "brands": [
+            { "name": "Omron", "tier": "Premium" },
+            { "name": "Accu-Chek", "tier": "Premium" },
+            { "name": "Dr Morepen", "tier": "Popular" }
+          ],
+          "items": [
+            {
+              "item_name": "Health Monitor",
+              "types": ["Thermometer", "BP Monitor", "Glucometer"],
+              "variants": ["Digital", "Infrared", "Smart Bluetooth"],
+              "flavours": [],
+              "sizes": [
+                { "unit": "pc", "value": 1, "price_range": { "min": 250, "max": 3500 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_name": "Pet Care",
+      "sub_categories": [
+        {
+          "sub_category_name": "Dog & Cat Food",
+          "storage_type": "Ambient",
+          "gst_percentage": 18,
+          "base_shelf_life_days": 540,
+          "brands": [
+            { "name": "Pedigree", "tier": "Popular" },
+            { "name": "Whiskas", "tier": "Popular" },
+            { "name": "Drools", "tier": "Budget" },
+            { "name": "Purepet", "tier": "Budget" }
+          ],
+          "items": [
+            {
+              "item_name": "Pet Food",
+              "types": ["Dry Kibbles", "Wet Gravy", "Treats", "Biscuits"],
+              "variants": ["Puppy/Kitten", "Adult", "Senior", "Weight Management"],
+              "flavours": ["Chicken", "Meat", "Ocean Fish", "Liver"],
+              "sizes": [
+                { "unit": "g", "value": 400, "price_range": { "min": 80, "max": 160 } },
+                { "unit": "kg", "value": 1.2, "price_range": { "min": 220, "max": 450 } },
+                { "unit": "kg", "value": 3, "price_range": { "min": 500, "max": 950 } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

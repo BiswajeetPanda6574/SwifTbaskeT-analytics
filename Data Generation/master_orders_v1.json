@@ -1,0 +1,261 @@
+{
+  "metadata": {
+    "project_name": "QuickCommerce BI",
+    "city": "Bengaluru",
+    "version": "1.0",
+    "target_orders": 300000,
+    "simulation_period": {
+      "start_date": "2025-04-01",
+      "end_date": "2025-09-30"
+    },
+    "description": "Master configuration for central transactional Orders table generation.",
+    "generator_mode": "strict_relational"
+  },
+  "global_rules": {
+    "columns": [
+      "Order_ID",
+      "Customer_ID",
+      "Store_ID",
+      "Rider_ID",
+      "Order_Timestamp",
+      "Delivery_Slot",
+      "Payment_Method",
+      "Payment_Status",
+      "Order_Status",
+      "Cancellation_Reason",
+      "Delivery_Fee",
+      "Coupon_Discount",
+      "Estimated_Delivery_Time",
+      "Actual_Delivery_Time",
+      "Delivery_Distance_km",
+      "Total_Order_Value",
+      "Weather_Condition",
+      "Peak_Hour",
+      "Festival_Flag",
+      "Order_Source",
+      "Customer_Delivery_Rating"
+    ],
+    "foreign_key_constraints": {
+      "Customer_ID": {
+        "source_file": "customers.csv",
+        "column": "Customer_ID"
+      },
+      "Store_ID": {
+        "source_file": "darkstores.csv",
+        "column": "Store_ID"
+      },
+      "Rider_ID": {
+        "source_file": "riders.csv",
+        "column": "Rider_ID"
+      }
+    },
+    "id_format": "ORD{index:07d}",
+    "currency": "INR"
+  },
+  "payment_rules": {
+    "methods_distribution": {
+      "UPI": 0.65,
+      "Credit Card": 0.20,
+      "Debit Card": 0.08,
+      "Cash on Delivery": 0.05,
+      "Wallet": 0.02
+    },
+    "status_distribution": {
+      "Paid": 0.94,
+      "Pending": 0.03,
+      "Refunded": 0.03
+    },
+    "constraints": [
+      "IF Order_Status == 'Delivered' THEN Payment_Status = 'Paid'",
+      "IF Order_Status == 'Cancelled' AND Payment_Method != 'Cash on Delivery' THEN Payment_Status = 'Refunded' OR 'Pending'",
+      "IF Order_Status == 'Cancelled' AND Payment_Method == 'Cash on Delivery' THEN Payment_Status = 'Pending'"
+    ]
+  },
+  "order_status_rules": {
+    "distribution": {
+      "Delivered": 0.95,
+      "Cancelled": 0.03,
+      "Failed": 0.02
+    },
+    "cancellation_reasons": [
+      "Customer Unreachable",
+      "Out of Stock",
+      "Rider Unavailable",
+      "Order Delayed",
+      "Customer Cancelled"
+    ],
+    "constraints": [
+      "IF Order_Status != 'Cancelled' THEN Cancellation_Reason = NULL"
+    ]
+  },
+  "delivery_rules": {
+    "distance_km": {
+      "min": 0.5,
+      "max": 8.0,
+      "distribution_skew": "right",
+      "mean": 3.2
+    },
+    "estimated_time_mins": {
+      "min": 10,
+      "max": 30,
+      "logic": "Base 10 mins + (Delivery_Distance_km * 2.5) + (Weather/Peak multipliers)"
+    },
+    "actual_time_mins": {
+      "min": 8,
+      "max": 45,
+      "logic": "Normal distribution around Estimated_Delivery_Time. Standard deviation 3 mins."
+    },
+    "delivery_fee": {
+      "base_free_threshold_km": 4.0,
+      "rate_per_km_above_threshold": 10.0,
+      "logic": "IF Delivery_Distance_km <= 4.0 THEN 0 ELSE (Delivery_Distance_km - 4.0) * 10"
+    }
+  },
+  "weather_rules": {
+    "monthly_weather": {
+
+"04": {
+"clear_day":0.72,
+"cloudy_day":0.20,
+"rain_day":0.06,
+"heavy_rain_day":0.02
+},
+
+"05": {
+"clear_day":0.55,
+"cloudy_day":0.22,
+"rain_day":0.15,
+"heavy_rain_day":0.08
+},
+
+"06": {
+"clear_day":0.25,
+"cloudy_day":0.30,
+"rain_day":0.25,
+"heavy_rain_day":0.20
+},
+
+"07": {
+"clear_day":0.15,
+"cloudy_day":0.25,
+"rain_day":0.30,
+"heavy_rain_day":0.30
+},
+
+"08": {
+"clear_day":0.15,
+"cloudy_day":0.25,
+"rain_day":0.30,
+"heavy_rain_day":0.30
+},
+
+"09": {
+"clear_day":0.30,
+"cloudy_day":0.30,
+"rain_day":0.25,
+"heavy_rain_day":0.15
+}
+
+},
+    "impact": {
+      "Rain": {
+        "actual_time_multiplier": 1.2,
+        "surge_fee": 10.0
+      },
+      "Heavy Rain": {
+        "actual_time_multiplier": 1.5,
+        "surge_fee": 25.0
+      }
+    }
+  },
+  "festival_rules": {
+    "flags": {
+      "No": 0.92,
+      "Yes": 0.08
+    },
+    "impact": {
+      "Yes": {
+        "order_volume_multiplier": 1.4,
+        "average_basket_multiplier": 1.2,
+        "actual_time_penalty_mins": 5
+      }
+    }
+  },
+  "order_frequency_rules": {
+    "weekday_multiplier": 1.0,
+    "weekend_multiplier": 1.25,
+    "peak_hour_multiplier": 1.6,
+    "festival_multiplier": 1.4
+  },
+  "order_source_rules": {
+    "distribution": {
+      "Android": 0.55,
+      "iOS": 0.35,
+      "Web": 0.10
+    }
+  },
+  "rating_rules": {
+    "distribution": {
+      "5": 0.55,
+      "4": 0.25,
+      "3": 0.10,
+      "2": 0.06,
+      "1": 0.04
+    },
+    "constraints": [
+      "IF Order_Status IN ['Cancelled', 'Failed'] THEN Customer_Delivery_Rating = NULL",
+      "IF Actual_Delivery_Time > (Estimated_Delivery_Time + 15) THEN max_rating = 3",
+      "IF Weather_Condition == 'Heavy Rain' AND Actual_Delivery_Time <= Estimated_Delivery_Time THEN min_rating = 4"
+    ]
+  },
+  "coupon_rules": {
+    "probability": 0.25,
+    "discount_range_inr": {
+      "min": 20,
+      "max": 150
+    },
+    "constraints": [
+      "Coupon_Discount <= (Total_Order_Value * 0.40)",
+      "(Total_Order_Value - Coupon_Discount) > 0"
+    ]
+  },
+  "business_rules": [
+    {
+      "rule_id": "ORD_BR_001",
+      "name": "Rider Store Alignment",
+      "logic": "Order.Store_ID MUST MATCH Rider.Store_ID for the assigned Rider_ID."
+    },
+    {
+      "rule_id": "ORD_BR_002",
+      "name": "Active Rider Constraint",
+      "logic": "Assigned Rider MUST have Rider_Status == 'Active'."
+    },
+    {
+      "rule_id": "ORD_BR_003",
+      "name": "Peak Hour Operations",
+      "logic": "IF Peak_Hour == 'Yes' THEN Delivery_Fee += 10.0 AND Actual_Delivery_Time += 5 mins."
+    },
+    {
+      "rule_id": "ORD_BR_004",
+      "name": "Time Sequence Validation",
+      "logic": "Delivery_Slot MUST be chronologically after or encompassing Order_Timestamp."
+    },
+    {
+      "rule_id": "ORD_BR_005",
+      "name": "Total Value Calculation",
+      "logic": "Basket_Value is an internal generation variable. Total_Order_Value = Basket_Value + Delivery_Fee - Coupon_Discount AND Total_Order_Value > 0."
+    }
+  ],
+  "validation_rules": [
+    "Order_ID must be strictly unique.",
+    "Customer_ID must exist in customers.csv.",
+    "Store_ID must exist in darkstores.csv.",
+    "Rider_ID must exist in riders.csv.",
+    "No negative values in Total_Order_Value, Delivery_Fee, Coupon_Discount, Delivery_Distance_km.",
+    "Cancellation_Reason must be strictly NULL if Order_Status is 'Delivered'.",
+    "Customer_Delivery_Rating must be strictly NULL if Order_Status is 'Cancelled' or 'Failed'.",
+    "Estimated_Delivery_Time must be between 10 and 30.",
+    "Actual_Delivery_Time must be between 8 and 45.",
+    "No missing/NULL values in mandatory fields (Order_ID, Customer_ID, Store_ID, Rider_ID, Order_Timestamp, Total_Order_Value)."
+  ]
+}

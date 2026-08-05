@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "project_name": "QuickCommerce BI",
+    "version": "1.0",
+    "generated_for": "End-to-End Business Intelligence Project",
+    "city": "Bengaluru",
+    "currency": "INR",
+    "generator_version": "v3.0-enterprise",
+    "project_duration": {
+      "start_date": "2025-04-01",
+      "end_date": "2025-09-30"
+    },
+    "target_dark_stores": 12
+  },
+  "global_rules": {
+    "capacity_dependency": "Store capacity depends directly on Store_Type.",
+    "temperature_control": "Temperature controlled stores can stock Frozen Foods, Dairy, Meat and Medicines.",
+    "customer_mapping": "Every customer must be mapped to the nearest Active store inside its Service Radius.",
+    "inventory_generation": "Inventory is generated only for Active stores.",
+    "maintenance_restriction": "Maintenance stores cannot receive new orders.",
+    "expansion_restriction": "Under Expansion stores have only 40% of normal inventory.",
+    "large_store_allocation": "Large stores should serve larger customer populations."
+  },
+  "store_types": {
+    "Micro": {
+      "service_radius_km": { "min": 2.0, "max": 3.0 },
+      "storage_capacity": { "min": 1200, "max": 1800 },
+      "daily_order_capacity": { "min": 600, "max": 900 },
+      "temperature_control": true
+    },
+    "Medium": {
+      "service_radius_km": { "min": 3.0, "max": 5.0 },
+      "storage_capacity": { "min": 1800, "max": 2600 },
+      "daily_order_capacity": { "min": 900, "max": 1500 },
+      "temperature_control": true
+    },
+    "Large": {
+      "service_radius_km": { "min": 5.0, "max": 7.0 },
+      "storage_capacity": { "min": 2600, "max": 3500 },
+      "daily_order_capacity": { "min": 1500, "max": 2500 },
+      "temperature_control": true
+    }
+  },
+  "store_status": {
+    "Active": 0.85,
+    "Maintenance": 0.10,
+    "Under Expansion": 0.05
+  },
+  "areas": [
+    { "name": "Koramangala", "pincode": "560034" },
+    { "name": "HSR Layout", "pincode": "560102" },
+    { "name": "Whitefield", "pincode": "560066" },
+    { "name": "Indiranagar", "pincode": "560038" },
+    { "name": "Electronic City", "pincode": "560100" },
+    { "name": "Marathahalli", "pincode": "560037" },
+    { "name": "Bellandur", "pincode": "560103" },
+    { "name": "JP Nagar", "pincode": "560078" },
+    { "name": "Hebbal", "pincode": "560024" },
+    { "name": "Yelahanka", "pincode": "560064" },
+    { "name": "Rajajinagar", "pincode": "560010" },
+    { "name": "Sarjapur Road", "pincode": "560035" }
+  ],
+  "generation_rules": {
+    "store_id_format": "DS{index:03d}",
+    "store_name_format": "{Area} Dark Store",
+    "final_columns": [
+      "Store_ID",
+      "Store_Name",
+      "City",
+      "Area",
+      "Pincode",
+      "Store_Type",
+      "Service_Radius_KM",
+      "Storage_Capacity",
+      "Temperature_Control",
+      "Daily_Order_Capacity",
+      "Current_Status"
+    ]
+  },
+  "business_rules": [
+    {
+      "rule_id": "DS_BR_001",
+      "rule_name": "Order Cutoff Threshold",
+      "logic": "IF daily_orders >= (0.90 * daily_order_capacity) THEN stop_accepting_new_orders = TRUE"
+    },
+    {
+      "rule_id": "DS_BR_002",
+      "rule_name": "Automated Replenishment",
+      "logic": "IF inventory_utilization > 0.85 THEN trigger_replenishment_process()"
+    },
+    {
+      "rule_id": "DS_BR_003",
+      "rule_name": "Rider Allocation Guardrail",
+      "logic": "IF Current_Status != 'Active' THEN assign_riders = FALSE"
+    },
+    {
+      "rule_id": "DS_BR_004",
+      "rule_name": "Cold Chain Integrity",
+      "logic": "IF product_storage_type == 'Frozen' AND Temperature_Control == FALSE THEN block_inventory_allocation()"
+    },
+    {
+      "rule_id": "DS_BR_005",
+      "rule_name": "Geo-Fencing Enforcement",
+      "logic": "IF distance(customer, store) > Service_Radius_KM THEN customer_eligible = FALSE"
+    },
+    {
+      "rule_id": "DS_BR_006",
+      "rule_name": "Dynamic Order Routing",
+      "logic": "Assign order TO min_distance(eligible_active_stores)"
+    },
+    {
+      "rule_id": "DS_BR_007",
+      "rule_name": "Inventory Limit Enforcement",
+      "logic": "sum(inventory_items) MUST BE <= Storage_Capacity"
+    }
+  ],
+  "validation_rules": [
+    "Ensure exactly 12 records are generated.",
+    "Store_ID must be strictly unique.",
+    "Area must be strictly unique.",
+    "Pincode must be strictly unique.",
+    "No duplicate Store Names allowed.",
+    "Every Area must be mapped to 'Bengaluru'.",
+    "Store_Type must exactly match one of ['Micro', 'Medium', 'Large'].",
+    "Current_Status must exactly match one of ['Active', 'Maintenance', 'Under Expansion']."
+  ]
+}

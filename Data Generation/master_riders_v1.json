@@ -1,0 +1,174 @@
+{
+  "metadata": {
+    "Project_Name": "QuickCommerce BI",
+    "Version": "1.0",
+    "Generator_Version": "Python 3.x",
+    "City": "Bengaluru",
+    "Currency": "INR",
+    "Target_Riders": {
+      "approximate": 465,
+      "generation_method": "Derived dynamically from Store_Type rider capacity ranges."
+    },
+    "Dark_Store_Count": 12,
+    "Simulation_Period": {
+      "Start_Date": "2025-04-01",
+      "End_Date": "2025-09-30"
+    }
+  },
+  "global_rules": {
+    "column_schema": [
+      "Rider_ID",
+      "Rider_Name",
+      "Store_ID",
+      "Rider_Status",
+      "Average_Rating",
+      "Average_Delivery_Time_Min"
+    ]
+  },
+  "rider_status": {
+    "allowed_values": [
+      "Active",
+      "On Leave",
+      "Inactive"
+    ],
+    "distribution_percentage": {
+      "Active": 92.0,
+      "On Leave": 5.0,
+      "Inactive": 3.0
+    }
+  },
+  "rating_rules": {
+    "minimum": 3.0,
+    "maximum": 5.0,
+    "rounding_decimals": 1,
+    "distribution_logic": {
+      "type": "approximate_normal",
+      "target_ranges": [
+        {
+          "range": [3.0, 3.4],
+          "percentage": 5.0,
+          "note": "Very poor performers. Rare."
+        },
+        {
+          "range": [3.5, 4.1],
+          "percentage": 20.0,
+          "note": "Average performers."
+        },
+        {
+          "range": [4.2, 4.8],
+          "percentage": 65.0,
+          "note": "Majority of riders."
+        },
+        {
+          "range": [4.9, 5.0],
+          "percentage": 10.0,
+          "note": "Top-performing riders."
+        }
+      ]
+    }
+  },
+  "delivery_time_rules": {
+    "minimum": 10.0,
+    "maximum": 30.0,
+    "rounding_decimals": 1,
+    "distribution_percentage": [
+      {
+        "range": [10.0, 15.0],
+        "percentage": 25.0
+      },
+      {
+        "range": [15.1, 20.0],
+        "percentage": 45.0
+      },
+      {
+        "range": [20.1, 25.0],
+        "percentage": 25.0
+      },
+      {
+        "range": [25.1, 30.0],
+        "percentage": 5.0
+      }
+    ]
+  },
+  "store_assignment_rules": {
+    "logic": "Every rider belongs to exactly one Dark Store. Every Store_ID must exist in darkstores.csv.",
+    "capacity_by_store_type": {
+      "Large": {
+        "min_riders": 55,
+        "max_riders": 65
+      },
+      "Medium": {
+        "min_riders": 35,
+        "max_riders": 45
+      },
+      "Micro": {
+        "min_riders": 15,
+        "max_riders": 25
+      }
+    }
+  },
+  "business_rules": [
+    {
+      "name": "Order Assignment Eligibility",
+      "logic": "Only Active riders are eligible for order assignment."
+    },
+    {
+      "name": "Leave Status Handling",
+      "logic": "On Leave riders temporarily receive no orders."
+    },
+    {
+      "name": "Inactive Status Handling",
+      "logic": "Inactive riders never receive orders."
+    },
+    {
+      "name": "Store Mapping",
+      "logic": "Every rider must belong to exactly one Store_ID. Every Store_ID must exist."
+    },
+    {
+      "name": "Historical Rating",
+      "logic": "Average_Rating represents historical customer feedback. Average_Rating represents the cumulative average customer rating across all completed deliveries up to the simulation start date. This is a static master attribute."
+    },
+    {
+      "name": "Historical Delivery Time",
+      "logic": "Average_Delivery_Time_Min represents historical delivery performance. This is a static master attribute."
+    },
+    {
+      "name": "Rider Name Generation",
+      "logic": "Generate realistic Indian names. Duplicate names are allowed with a maximum occurrence of 3. Do not allow duplicate Rider_Name + Store_ID combinations."
+    }
+  ],
+  "validation_rules": [
+    {
+      "check": "primary_key",
+      "condition": "Exactly one Rider_ID per rider. Unique Rider_ID."
+    },
+    {
+      "check": "foreign_key",
+      "condition": "Valid Store_ID linked to darkstores.csv."
+    },
+    {
+      "check": "status",
+      "condition": "Valid Rider_Status (Active, On Leave, Inactive)."
+    },
+    {
+      "check": "rating_bounds",
+      "condition": "Average_Rating must be between 3.0 and 5.0 inclusive."
+    },
+    {
+      "check": "delivery_time_bounds",
+      "condition": "Average_Delivery_Time_Min must be between 10.0 and 30.0 inclusive."
+    },
+    {
+      "check": "completeness",
+      "condition": "No NULL values allowed in any column."
+    },
+    {
+      "check": "duplicate_name_limit",
+      "condition": "Duplicate Rider_Name allowed only up to 3 times across the dataset."
+    },
+    {
+      "check": "composite_uniqueness",
+      "condition": "No duplicate Rider_Name + Store_ID combination."
+    }
+  ]
+}

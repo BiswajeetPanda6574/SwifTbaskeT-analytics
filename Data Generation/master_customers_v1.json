@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "project_name": "QuickCommerce BI",
+    "version": "1.0",
+    "city": "Bengaluru",
+    "currency": "INR",
+    "target_customers": 15000,
+    "project_duration": {
+      "start_date": "2025-04-01",
+      "end_date": "2025-09-30"
+    },
+    "created_for": "End-to-End Business Intelligence Project",
+    "generator_version": "v2.5-enterprise"
+  },
+  "global_rules": {
+    "loyalty_score": {
+      "range": {
+        "min": 0,
+        "max": 100
+      },
+      "influencing_factors": [
+        "Purchase Frequency",
+        "Average Basket Value",
+        "Repeat Purchase Rate",
+        "Membership",
+        "Return Rate",
+        "Customer Status"
+      ],
+      "description": "Higher scores indicate more loyal and valuable customers."
+    },
+    "lifetime_value_ranges": {
+      "Student": { "min": 5000, "max": 40000 },
+      "Working Professional": { "min": 20000, "max": 120000 },
+      "Parent": { "min": 40000, "max": 200000 },
+      "Grocery Planner": { "min": 50000, "max": 250000 },
+      "Fitness Enthusiast": { "min": 30000, "max": 100000 },
+      "Sick Day Customer": { "min": 2000, "max": 15000 },
+      "Host / Party Buyer": { "min": 10000, "max": 60000 }
+    }
+  },
+  "cities": [
+    "Bengaluru"
+  ],
+  "areas": [
+    { "name": "Koramangala", "pincode": "560034" },
+    { "name": "HSR Layout", "pincode": "560102" },
+    { "name": "Whitefield", "pincode": "560066" },
+    { "name": "Indiranagar", "pincode": "560038" },
+    { "name": "Marathahalli", "pincode": "560037" },
+    { "name": "Bellandur", "pincode": "560103" },
+    { "name": "Electronic City", "pincode": "560100" },
+    { "name": "BTM Layout", "pincode": "560029" },
+    { "name": "Jayanagar", "pincode": "560011" },
+    { "name": "JP Nagar", "pincode": "560078" },
+    { "name": "Hebbal", "pincode": "560024" },
+    { "name": "Yelahanka", "pincode": "560064" },
+    { "name": "Banashankari", "pincode": "560050" },
+    { "name": "Malleshwaram", "pincode": "560003" },
+    { "name": "Rajajinagar", "pincode": "560010" },
+    { "name": "Brookefield", "pincode": "560037" },
+    { "name": "Domlur", "pincode": "560071" },
+    { "name": "Ulsoor", "pincode": "560008" },
+    { "name": "CV Raman Nagar", "pincode": "560093" },
+    { "name": "RR Nagar", "pincode": "560098" },
+    { "name": "Kengeri", "pincode": "560060" },
+    { "name": "Sarjapur", "pincode": "560125" },
+    { "name": "Hennur", "pincode": "560043" },
+    { "name": "Horamavu", "pincode": "560043" },
+    { "name": "Nagarbhavi", "pincode": "560072" },
+    { "name": "Yeshwanthpur", "pincode": "560022" },
+    { "name": "Basavanagudi", "pincode": "560004" },
+    { "name": "Vijayanagar", "pincode": "560040" },
+    { "name": "RT Nagar", "pincode": "560032" },
+    { "name": "MG Road", "pincode": "560001" },
+    { "name": "Frazer Town", "pincode": "560005" },
+    { "name": "Sanjaynagar", "pincode": "560094" },
+    { "name": "Kammanahalli", "pincode": "560084" }
+  ],
+  "pincodes": {
+    "description": "Linked implicitly to 'areas' array objects."
+  },
+  "payment_methods": {
+    "UPI": 0.50,
+    "Credit Card": 0.25,
+    "Debit Card": 0.10,
+    "Cash on Delivery": 0.13,
+    "Wallet": 0.02
+  },
+  "memberships": {
+    "Non Member": 0.70,
+    "Quick Pass": 0.30
+  },
+  "customer_status": {
+    "Active": 0.82,
+    "Inactive": 0.08,
+    "Dormant": 0.08,
+    "Blocked": 0.02
+  },
+  "age_groups": [
+    "18-22",
+    "23-30",
+    "31-40",
+    "41-50",
+    "51+"
+  ],
+  "occupations": [
+    "Student",
+    "Software Engineer",
+    "Doctor",
+    "Teacher",
+    "Business Owner",
+    "Consultant",
+    "Government Employee",
+    "Bank Employee",
+    "HR",
+    "Marketing Executive",
+    "Lawyer",
+    "Architect",
+    "Data Analyst",
+    "UX Designer",
+    "Delivery Executive",
+    "Sales Executive",
+    "Homemaker",
+    "Retired",
+    "Freelancer",
+    "Chartered Accountant",
+    "Entrepreneur"
+  ],
+  "residential_types": [
+    "Apartment",
+    "Independent House",
+    "Villa",
+    "PG",
+    "Hostel",
+    "Gated Community"
+  ],
+  "personas": [
+    {
+      "persona_name": "Student",
+      "distribution_percentage": 20.0,
+      "age_range": "18-22",
+      "occupations": ["Student"],
+      "monthly_income_range": { "min": 5000, "max": 25000 },
+      "preferred_categories": ["Snacks", "Beverages", "Frozen Snacks", "Electronics", "Beauty & Personal Care"],
+      "preferred_payment_methods": ["UPI", "Wallet"],
+      "preferred_order_time": "22:00-02:00",
+      "average_basket_value": { "min": 150, "max": 350 },
+      "average_orders_per_month": { "min": 8, "max": 15 },
+      "weekend_order_probability": 0.75,
+      "preferred_delivery_window": "10 Mins",
+      "preferred_membership": "Non Member",
+      "order_behaviour": "Impulse Driven, Late Night Craver",
+      "brand_preference": "Brand Agnostic, Price Driven",
+      "discount_sensitivity": "High",
+      "cod_probability": 0.15,
+      "impulse_buying_probability": 0.85,
+      "repeat_purchase_probability": 0.60,
+      "return_probability": 0.05
+    },
+    {
+      "persona_name": "Working Professional",
+      "distribution_percentage": 40.0,
+      "age_range": "23-40",
+      "occupations": ["Software Engineer", "Data Analyst", "HR", "Marketing Executive", "Consultant", "Sales Executive", "UX Designer"],
+      "monthly_income_range": { "min": 40000, "max": 150000 },
+      "preferred_categories": ["Frozen Foods", "Dairy, Bread & Eggs", "Beverages", "Beauty & Personal Care", "Fresh Fruits", "Bread"],
+      "preferred_payment_methods": ["UPI", "Credit Card"],
+      "preferred_order_time": "19:00-22:00",
+      "average_basket_value": { "min": 400, "max": 900 },
+      "average_orders_per_month": { "min": 10, "max": 20 },
+      "weekend_order_probability": 0.65,
+      "preferred_delivery_window": "10 Mins",
+      "preferred_membership": "Quick Pass",
+      "order_behaviour": "Convenience Seeker, Daily Restocker",
+      "brand_preference": "Moderate Brand Loyalty",
+      "discount_sensitivity": "Medium",
+      "cod_probability": 0.05,
+      "impulse_buying_probability": 0.60,
+      "repeat_purchase_probability": 0.85,
+      "return_probability": 0.04
+    },
+    {
+      "persona_name": "Parent",
+      "distribution_percentage": 18.0,
+      "age_range": "31-50",
+      "occupations": ["Doctor", "Teacher", "Bank Employee", "Lawyer", "Architect", "Government Employee"],
+      "monthly_income_range": { "min": 60000, "max": 250000 },
+      "preferred_categories": ["Baby Care", "Dairy, Bread & Eggs", "Fruits & Vegetables", "Staples & Grocery", "Milk", "Cleaning Essentials"],
+      "preferred_payment_methods": ["Credit Card", "UPI"],
+      "preferred_order_time": "06:30-09:00",
+      "average_basket_value": { "min": 800, "max": 1600 },
+      "average_orders_per_month": { "min": 8, "max": 12 },
+      "weekend_order_probability": 0.50,
+      "preferred_delivery_window": "Scheduled / 10 Mins",
+      "preferred_membership": "Quick Pass",
+      "order_behaviour": "Predictable, Loyalty Driven",
+      "brand_preference": "High Brand Loyalty (Especially Baby Care)",
+      "discount_sensitivity": "Medium",
+      "cod_probability": 0.10,
+      "impulse_buying_probability": 0.30,
+      "repeat_purchase_probability": 0.90,
+      "return_probability": 0.03
+    },
+    {
+      "persona_name": "Grocery Planner",
+      "distribution_percentage": 10.0,
+      "age_range": "31-51+",
+      "occupations": ["Homemaker", "Retired", "Business Owner", "Government Employee"],
+      "monthly_income_range": { "min": 50000, "max": 200000 },
+      "preferred_categories": ["Staples & Grocery", "Fruits & Vegetables", "Household Essentials", "Atta", "Fresh Vegetables", "Meat & Fish"],
+      "preferred_payment_methods": ["UPI", "Debit Card", "Cash on Delivery"],
+      "preferred_order_time": "10:00-14:00",
+      "average_basket_value": { "min": 1200, "max": 3000 },
+      "average_orders_per_month": { "min": 3, "max": 6 },
+      "weekend_order_probability": 0.40,
+      "preferred_delivery_window": "Flexible",
+      "preferred_membership": "Non Member",
+      "order_behaviour": "Bulk Buyer, Value Seeker",
+      "brand_preference": "High Brand Loyalty",
+      "discount_sensitivity": "High",
+      "cod_probability": 0.30,
+      "impulse_buying_probability": 0.15,
+      "repeat_purchase_probability": 0.95,
+      "return_probability": 0.08
+    },
+    {
+      "persona_name": "Fitness Enthusiast",
+      "distribution_percentage": 6.0,
+      "age_range": "23-40",
+      "occupations": ["Software Engineer", "Freelancer", "Doctor", "Entrepreneur"],
+      "monthly_income_range": { "min": 50000, "max": 200000 },
+      "preferred_categories": ["Fresh Fruits", "Eggs", "Chicken", "Meat & Fish", "Fresh Vegetables"],
+      "preferred_payment_methods": ["Credit Card", "UPI"],
+      "preferred_order_time": "06:00-09:00",
+      "average_basket_value": { "min": 700, "max": 1500 },
+      "average_orders_per_month": { "min": 6, "max": 12 },
+      "weekend_order_probability": 0.60,
+      "preferred_delivery_window": "10 Mins",
+      "preferred_membership": "Quick Pass",
+      "order_behaviour": "Label Reader, Macro Tracker",
+      "brand_preference": "Niche/Premium Brands",
+      "discount_sensitivity": "Low",
+      "cod_probability": 0.02,
+      "impulse_buying_probability": 0.20,
+      "repeat_purchase_probability": 0.85,
+      "return_probability": 0.02
+    },
+    {
+      "persona_name": "Sick Day Customer",
+      "distribution_percentage": 3.0,
+      "age_range": "18-51+",
+      "occupations": ["Student", "Software Engineer", "Homemaker", "Consultant"],
+      "monthly_income_range": { "min": 10000, "max": 300000 },
+      "preferred_categories": ["Pharmacy", "Cold & Flu", "Pain Relief", "Medical Devices", "Beverages"],
+      "preferred_payment_methods": ["UPI"],
+      "preferred_order_time": "08:00-11:00",
+      "average_basket_value": { "min": 250, "max": 600 },
+      "average_orders_per_month": { "min": 1, "max": 2 },
+      "weekend_order_probability": 0.28,
+      "preferred_delivery_window": "10 Mins",
+      "preferred_membership": "Non Member",
+      "order_behaviour": "Urgency Driven, High Need",
+      "brand_preference": "Brand Agnostic (Availability driven)",
+      "discount_sensitivity": "Very Low",
+      "cod_probability": 0.10,
+      "impulse_buying_probability": 0.05,
+      "repeat_purchase_probability": 0.30,
+      "return_probability": 0.01
+    },
+    {
+      "persona_name": "Host / Party Buyer",
+      "distribution_percentage": 3.0,
+      "age_range": "23-40",
+      "occupations": ["Business Owner", "Software Engineer", "Entrepreneur", "Marketing Executive"],
+      "monthly_income_range": { "min": 80000, "max": 300000 },
+      "preferred_categories": ["Beverages", "Snacks", "Frozen Snacks", "Munchies", "Meat & Fish"],
+      "preferred_payment_methods": ["Credit Card", "UPI"],
+      "preferred_order_time": "19:00-23:30",
+      "average_basket_value": { "min": 1000, "max": 2500 },
+      "average_orders_per_month": { "min": 2, "max": 4 },
+      "weekend_order_probability": 0.90,
+      "preferred_delivery_window": "10 Mins",
+      "preferred_membership": "Quick Pass",
+      "order_behaviour": "High Stress, Volume Buyer",
+      "brand_preference": "Premium Brands",
+      "discount_sensitivity": "Low",
+      "cod_probability": 0.05,
+      "impulse_buying_probability": 0.70,
+      "repeat_purchase_probability": 0.50,
+      "return_probability": 0.02
+    }
+  ],
+  "business_rules": [
+    {
+      "rule_id": "BR_001",
+      "rule_name": "Summer VS Winter (Seasonality)",
+      "category": "Demand Forecasting",
+      "description": "Ice-creams, Cold drinks, Mangos sales increase during summers. While soups, coffee, tea, dry fruits sales increase during winters.",
+      "logic": "IF month IN [Mar, Apr, May, Jun] THEN increase multiplier for [Cold Beverages, Ice Creams, Mangoes]. IF month IN [Nov, Dec, Jan] THEN increase multiplier for [Hot Beverages, Soups, Dry Fruits]."
+    },
+    {
+      "rule_id": "BR_002",
+      "rule_name": "UPI vs COD by City Tier",
+      "category": "Payments",
+      "description": "Customers in large cities (metro cities) prefer UPI more over COD while in small cities people prefer COD more. (Bengaluru defaults heavily to UPI).",
+      "logic": "IF city == 'Bengaluru' THEN set UPI probability >= 0.5 AND COD probability <= 0.15."
+    },
+    {
+      "rule_id": "BR_003",
+      "rule_name": "Grocery Dominates Pet care & Electronics",
+      "category": "Inventory & Cart",
+      "description": "Grocery, snacks, beverages, food products, etc are ordered more as compared to electronic items.",
+      "logic": "Enforce cart composition ratio: 85% FMCG/Grocery : 10% Personal/Pet Care : 5% Electronics/General Merchandise."
+    },
+    {
+      "rule_id": "BR_004",
+      "rule_name": "High Rated Riders Get More Deliveries",
+      "category": "Logistics Allocation",
+      "description": "Riders with higher rating are given frequent and repeated deliveries.",
+      "logic": "IF rider_rating > 4.5 THEN assignment_weight = +20%."
+    },
+    {
+      "rule_id": "BR_005",
+      "rule_name": "Priority Batching",
+      "category": "Logistics Allocation",
+      "description": "IF a rider has a rating above 4.8 and a low cancellation rate, THEN the algorithm prioritizes them for 'batched orders'.",
+      "logic": "IF rider_rating >= 4.8 AND rider_cancellation_rate < 0.02 AND active_orders_in_radius >= 2 THEN assign batched_delivery."
+    },
+    {
+      "rule_id": "BR_006",
+      "rule_name": "Heavy Rainfall Delays & Cancellations",
+      "category": "Operations & SLAs",
+      "description": "Heavy rainfall can cause delayed deliveries & cancellation.",
+      "logic": "IF weather_condition == 'Heavy Rain' THEN increase ETA by 15 mins AND allow force_cancellation = TRUE AND shrink_serviceable_radius by 50%."
+    },
+    {
+      "rule_id": "BR_007",
+      "rule_name": "Time of Day Product Suggestions",
+      "category": "Recommendation Engine",
+      "description": "Product suggestions depending on the time of day.",
+      "logic": "IF time BETWEEN 06:00 AND 09:00 THEN recommend [Milk, Eggs, Bread]. IF time > 22:00 THEN recommend [Condoms, Chips, Antacids]."
+    },
+    {
+      "rule_id": "BR_008",
+      "rule_name": "COD Ban",
+      "category": "Risk Management",
+      "description": "IF a customer is refusing the order upon COD at doorsteps, and if it happens twice in a month, THEN COD option will be disabled for that user permanently.",
+      "logic": "IF count(cod_rejections) >= 2 IN trailing_30_days THEN set cod_eligible = FALSE."
+    },
+    {
+      "rule_id": "BR_009",
+      "rule_name": "The Heavy Order Split",
+      "category": "Logistics Management",
+      "description": "IF a rider is assigned a order weighing over 15kg THEN that order will be distributed among 2 riders.",
+      "logic": "IF order_weight_kg > 15 THEN split_order(order_id, 2_riders)."
+    },
+    {
+      "rule_id": "BR_010",
+      "rule_name": "Dynamic Weather Fees",
+      "category": "Dynamic Pricing",
+      "description": "IF temperatures cross 42°C or rain exceeds a certain threshold, THEN automatically apply a Weather Surge Fee.",
+      "logic": "IF temperature >= 42 OR rainfall_mm >= threshold THEN apply fee('Weather Surge', 15.00) AND allocate 70% to rider."
+    },
+    {
+      "rule_id": "BR_011",
+      "rule_name": "Standard vs Premium Membership Hierarchy",
+      "category": "Fulfillment Prioritization",
+      "description": "Premium customers are preferred over Standard customers. Their order gets placed at the top of the picking queue.",
+      "logic": "IF customer_membership == 'Quick Pass' THEN queue_priority = 1 ELSE queue_priority = 2."
+    },
+    {
+      "rule_id": "BR_012",
+      "rule_name": "Peak Hour Pricing",
+      "category": "Dynamic Pricing",
+      "description": "During 6 PM - 10 PM the delivery pricing increases slightly.",
+      "logic": "IF time BETWEEN 18:00 AND 22:00 THEN apply fee('Peak Hour Surge', 10.00)."
+    },
+    {
+      "rule_id": "BR_013",
+      "rule_name": "Distance Wise Delivery Charges",
+      "category": "Pricing Strategy",
+      "description": "With increase in distance between the dark store and delivery address the delivery charge increases, keeping free delivery upto 4km.",
+      "logic": "IF distance_km <= 4 THEN delivery_fee = 0 ELSE delivery_fee = (distance_km - 4) * 10."
+    },
+    {
+      "rule_id": "BR_014",
+      "rule_name": "Market Basket Analysis",
+      "category": "Cross-Selling",
+      "description": "IF a customer is adding diapers in the cart, THEN baby care products are suggested accordingly during checkout.",
+      "logic": "IF cart CONTAINS category('Diapers') THEN trigger_recommendation_carousel('Baby Care Products')."
+    },
+    {
+      "rule_id": "BR_015",
+      "rule_name": "Weekend Behaviour",
+      "category": "Demand Patterns",
+      "description": "Most orders are placed during Friday and Saturday evening.",
+      "logic": "IF day IN ['Friday', 'Saturday'] AND time BETWEEN 17:00 AND 23:59 THEN total_order_volume_multiplier = 1.6."
+    },
+    {
+      "rule_id": "BR_016",
+      "rule_name": "The Markdown Rule (FEFO)",
+      "category": "Inventory Liquidation",
+      "description": "IF a batch of bread or milk is within 24 hours of its expiry date, THEN apply a 50% discount banner.",
+      "logic": "IF (item_expiry_date - current_date) <= 24_HOURS AND category IN ['Dairy', 'Bakery'] THEN apply_discount(item_id, 0.50)."
+    }
+  ]
+}

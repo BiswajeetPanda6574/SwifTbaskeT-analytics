@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "project_name": "QuickCommerce BI",
+    "version": "1.0",
+    "generator_version": "v4.0-enterprise",
+    "city": "Bengaluru",
+    "currency": "INR",
+    "products_count": 2314,
+    "dark_store_count": 12,
+    "project_duration": {
+      "start_date": "2025-04-01",
+      "end_date": "2025-09-30"
+    }
+  },
+  "global_rules": {
+    "data_dependencies": [
+      "products.csv",
+      "customers.csv",
+      "darkstores.csv"
+    ],
+    "inventory_distribution": "Inventory must be distributed across all 12 stores, respecting Store_Type assortment limits.",
+    "column_schema": [
+      "Inventory_ID",
+      "Store_ID",
+      "Product_ID",
+      "Current_Stock",
+      "Reorder_Level",
+      "Last_Restock_Date",
+      "Next_Restock_Date",
+      "Batch_ID",
+      "Expiry_Date",
+      "Inventory_Status"
+    ]
+  },
+  "inventory_status": {
+    "In Stock": {
+      "logic": "Current_Stock > Reorder_Level"
+    },
+    "Low Stock": {
+      "logic": "Current_Stock <= Reorder_Level AND Current_Stock > 0"
+    },
+    "Out of Stock": {
+      "logic": "Current_Stock == 0"
+    }
+  },
+  "product_category_rules": {
+    "velocity_mapping": {
+      "Fast": ["Dairy, Bread & Eggs", "Fruits & Vegetables", "Snacks", "Beverages", "Pharmacy"],
+      "Medium": ["Meat & Fish", "Staples & Grocery", "Frozen Foods", "Household Essentials", "Baby Care", "Pet Care"],
+      "Slow": ["Beauty & Personal Care", "Fashion & Lifestyle"]
+    },
+    "perishable_flag_handling": "Read 'base_shelf_life_days' and 'storage_type' from products.csv. Do NOT re-classify manually. Treat items with base_shelf_life_days <= 180 as strictly perishable for FEFO."
+  },
+  "stock_rules": {
+    "Dairy, Bread & Eggs": { "min": 30, "max": 120 },
+    "Fruits & Vegetables": { "min": 40, "max": 150 },
+    "Snacks": { "min": 80, "max": 250 },
+    "Beverages": { "min": 50, "max": 200 },
+    "Pharmacy": { "min": 20, "max": 150 },
+    "Meat & Fish": { "min": 15, "max": 60 },
+    "Staples & Grocery": { "min": 20, "max": 100 },
+    "Frozen Foods": { "min": 20, "max": 80 },
+    "Household Essentials": { "min": 15, "max": 80 },
+    "Baby Care": { "min": 10, "max": 60 },
+    "Pet Care": { "min": 10, "max": 60 },
+    "Beauty & Personal Care": { "min": 10, "max": 50 },
+    "Fashion & Lifestyle": { "min": 5, "max": 40 }
+  },
+  "reorder_level_rules": {
+    "Fast": "Calculate as 30% of the upper bound of the category's stock rule.",
+    "Medium": "Calculate as 25% of the upper bound of the category's stock rule.",
+    "Slow": "Calculate as 20% of the upper bound of the category's stock rule."
+  },
+  "restock_rules": {
+    "Last_Restock_Date": {
+      "logic": "Random date within the previous 30 days from the baseline simulation date."
+    },
+    "Next_Restock_Date": {
+      "Fast": "3 to 5 days after Last_Restock_Date.",
+      "Medium": "5 to 8 days after Last_Restock_Date.",
+      "Slow": "8 to 15 days after Last_Restock_Date."
+    }
+  },
+  "batch_rules": {
+    "format": "B{YY}{MM}{DD}{SEQ:03d}",
+    "description": "Unique identifier for every distinct product delivery batch. E.g., B250401001 for April 1, 2025, batch 1."
+  },
+  "expiry_rules": {
+    "perishable": {
+      "logic": "Expiry_Date = Last_Restock_Date + Remaining Shelf Life where Remaining Shelf Life is randomly generated within a realistic percentage of the product's base shelf life."
+    },
+    "non_perishable": {
+      "logic": "IF base_shelf_life_days >= 3650 THEN Expiry_Date = 'Not Applicable'."
+    }
+  },
+  "business_rules": [
+    {
+      "rule_id": "INV_BR_001",
+      "name": "Temperature Control Guardrail",
+      "logic": "IF products.csv indicates storage_type IN ['Refrigerated', 'Frozen'] THEN Store_ID MUST have Temperature_Control == TRUE."
+    },
+    {
+      "rule_id": "INV_BR_002",
+      "name": "Assortment Depth by Store Type",
+      "logic": "Micro stores stock 55-65% of total SKUs. Medium stores stock 70-80% of total SKUs. Large stores stock 85-95% of total SKUs."
+    },
+    {
+      "rule_id": "INV_BR_003",
+      "name": "Premium Location Assortment",
+      "logic": "Stores in ['Whitefield', 'Indiranagar', 'Koramangala', 'HSR Layout'] have a 40% higher probability of stocking products with 'tier' == 'Premium'."
+    },
+    {
+      "rule_id": "INV_BR_004",
+      "name": "Budget Location Assortment",
+      "logic": "Stores in ['Electronic City', 'Yelahanka', 'Rajajinagar'] have a 30% higher probability of stocking products with 'tier' == 'Budget'."
+    },
+    {
+      "rule_id": "INV_BR_005",
+      "name": "Capacity Ceiling",
+      "logic": "Total Current_Stock sum across all products for a specific Store_ID MUST NOT exceed its Storage_Capacity from darkstores.csv."
+    },
+    {
+      "rule_id": "INV_BR_006",
+      "name": "FEFO Enforcement Principle",
+      "logic": "Inventory batches with earlier Expiry_Date values must be mathematically prioritized for downstream order allocation."
+    },
+    {
+      "rule_id": "INV_BR_007",
+      "name": "Out of Stock Urgent Replenishment",
+      "logic": "IF Inventory_Status == 'Out of Stock' THEN Next_Restock_Date must always be scheduled within 48 hours."
+    }
+  ],
+  "validation_rules": [
+    "Inventory_ID must be strictly unique.",
+    "Batch_ID must be strictly unique per product delivery.",
+    "Store_ID must exist in darkstores.csv.",
+    "Product_ID must exist in products.csv.",
+    "Current_Stock >= 0 at all times.",
+    "Reorder_Level >= 0 at all times.",
+    "Next_Restock_Date > Last_Restock_Date.",
+    "Inventory_Status MUST mathematically match the Current_Stock vs Reorder_Level logic.",
+    "Expiry_Date is required for perishable items and 'Not Applicable' for non-perishables.",
+    "The number of unique Product_IDs stocked in a Store_ID must never exceed the assortment capacity permitted for that Store_Type."
+  ]
+}

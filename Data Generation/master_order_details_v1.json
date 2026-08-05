@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "project_name": "QuickCommerce BI",
+    "version": "1.0",
+    "description": "Configuration for Order Details generation mirroring realistic basket composition and strict price reconciliation."
+  },
+  "columns": [
+    "Order_Detail_ID",
+    "Order_ID",
+    "Product_ID",
+    "Quantity",
+    "Selling_Price",
+    "Item_Discount",
+    "Final_Item_Price"
+  ],
+  "id_format": "OD{index:08d}",
+  "basket_composition_rules": {
+    "themes": {
+      "Morning Essentials": ["Dairy, Bread & Eggs", "Beverages"],
+      "Snack Attack": ["Snacks", "Beverages"],
+      "Monthly Staples": ["Staples & Grocery", "Household Essentials", "Beauty & Personal Care"],
+      "Fresh Produce": ["Fruits & Vegetables", "Dairy, Bread & Eggs"],
+      "Meat & Dinner": ["Meat & Fish", "Staples & Grocery", "Beverages"],
+      "Quick Bites": ["Frozen Foods", "Snacks"],
+      "Pharmacy & Wellness": ["Pharmacy", "Beverages", "Beauty & Personal Care"],
+      "Pet Supplies": ["Pet Care", "Household Essentials"],
+      "Baby Needs": ["Baby Care", "Dairy, Bread & Eggs", "Household Essentials"],
+      "Mixed Basket": ["Fruits & Vegetables", "Dairy, Bread & Eggs", "Snacks", "Beverages", "Staples & Grocery"]
+    },
+    "theme_probability": [0.15, 0.15, 0.10, 0.15, 0.05, 0.05, 0.05, 0.05, 0.05, 0.20]
+  },
+  "quantity_rules": {
+    "distributions": {
+      "default": [1, 2, 3],
+      "default_weights": [0.75, 0.20, 0.05],
+      "bulk": [1, 2, 3, 4, 5],
+      "bulk_weights": [0.35, 0.35, 0.15, 0.10, 0.05],
+      "single": [1, 2],
+      "single_weights": [0.95, 0.05]
+    },
+    "category_mapping": {
+      "Staples & Grocery": "bulk",
+      "Beverages": "bulk",
+      "Household Essentials": "bulk",
+      "Snacks": "bulk",
+      "Fruits & Vegetables": "bulk",
+      "Beauty & Personal Care": "single",
+      "Dairy, Bread & Eggs": "single",
+      "Frozen Foods": "single",
+      "Meat & Fish": "single",
+      "Pharmacy": "single",
+      "Pet Care": "single",
+      "Baby Care": "single",
+      "Fashion & Lifestyle": "single"
+    }
+  },
+  "discount_rules": {
+    "max_discount_percentage": 0.40,
+    "strategy": "proportional_reconciliation"
+  }
+}

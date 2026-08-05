@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "project_name": "QuickCommerce BI",
+    "module": "Returns",
+    "version": "1.0",
+    "description": "Master configuration for Return transactions generation, ensuring referential integrity with Orders and Order Details.",
+    "generator_mode": "strict_relational"
+  },
+  "global_rules": {
+    "columns": [
+      "Return_ID",
+      "Order_ID",
+      "Product_ID",
+      "Return_Date",
+      "Return_Reason",
+      "Refund_Amount",
+      "Return_Status"
+    ],
+    "id_format": "RET{index:07d}",
+    "foreign_key_constraints": {
+      "Order_ID": {
+        "source_file": "orders.csv",
+        "column": "Order_ID"
+      },
+      "Order_Detail_Link": {
+        "source_file": "order_details.csv",
+        "columns": ["Order_ID", "Product_ID"]
+      }
+    }
+  },
+  "return_rate_rules": {
+    "base_return_probability": 0.035,
+    "eligibility_constraints": [
+      "Order.Order_Status == 'Delivered'"
+    ]
+  },
+  "return_date_rules": {
+    "offset_days_distribution": {
+      "0": 0.65,
+      "1": 0.25,
+      "2": 0.08,
+      "3": 0.02
+    },
+    "logic": "Return_Date = Order.Order_Timestamp::date + offset_days"
+  },
+  "return_reason_rules": {
+    "distribution": {
+      "Damaged in Transit": 0.35,
+      "Quality/Freshness Issue": 0.25,
+      "Wrong Item Delivered": 0.20,
+      "Expired Product": 0.15,
+      "Not as Expected": 0.05
+    }
+  },
+  "return_status_rules": {
+    "distribution": {
+      "Approved": 0.85,
+      "Rejected": 0.10,
+      "Pending": 0.05
+    }
+  },
+  "refund_rules": {
+    "logic": "Refund_Amount = Order_Details.Final_Item_Price * status_multiplier",
+    "status_multiplier": {
+      "Approved": 1.0,
+      "Rejected": 0.0,
+      "Pending": 0.0
+    },
+    "constraints": [
+      "Refund_Amount <= Order_Details.Final_Item_Price"
+    ]
+  },
+  "business_rules": [
+    {
+      "rule_id": "RET_BR_001",
+      "name": "Valid Return Origin",
+      "logic": "Returns can only be initiated for Orders where Order_Status == 'Delivered'."
+    },
+    {
+      "rule_id": "RET_BR_002",
+      "name": "Chronological Sequence",
+      "logic": "Return_Date MUST be >= Order_Timestamp."
+    },
+    {
+      "rule_id": "RET_BR_003",
+      "name": "Refund Upper Bound",
+      "logic": "Refund_Amount MUST NEVER exceed the Final_Item_Price from order_details."
+    },
+    {
+      "rule_id": "RET_BR_004",
+      "name": "Refund Status Synchronization",
+      "logic": "IF Return_Status IN ['Rejected', 'Pending'] THEN Refund_Amount MUST BE 0.0."
+    }
+  ],
+  "validation_rules": [
+    "Return_ID must be strictly unique.",
+    "(Order_ID, Product_ID) combination must strictly exist in order_details.csv.",
+    "Order_ID must trace back to an order in orders.csv with Order_Status == 'Delivered'.",
+    "Refund_Amount must be exactly 0.0 if Return_Status is 'Rejected' or 'Pending'.",
+    "No negative values permitted in Refund_Amount.",
+    "No missing/NULL values in mandatory fields (Return_ID, Order_ID, Product_ID, Return_Date, Return_Reason, Return_Status, Refund_Amount)."
+  ]
+}
