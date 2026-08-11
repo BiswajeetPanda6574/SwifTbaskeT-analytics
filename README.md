@@ -67,6 +67,5 @@ SwiftBaskeT-analytics/
 
 - ✅ Data generation completed
 - ✅ PostgreSQL database setup
-- ✅ SQL Modules 1–8 completed
-- 🔄 SQL Modules 9–10 in progress
+- ✅ SQL Modules 1–10 completed
 - 📊 Power BI dashboard planned
