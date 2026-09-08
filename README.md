@@ -27,58 +27,100 @@ SQL Business Analysis
         ↓
 Power BI Data Model
         ↓
-Interactive Dashboard```
+Interactive Dashboard
+```
+
+---
 
 ## SQL Analysis
 
 50/50 business SQL problems completed across 10 modules.
 
-**Key concepts used:**
+Key concepts used:
 
--Multi-table Joins
--CTEs
--Window Functions
--Aggregations
--Subqueries
--CASE Statements
--Conditional Aggregation
--Date & Time Analysis
--Ranking
+- Multi-table Joins
+- CTEs
+- Window Functions
+- Aggregations
+- Subqueries
+- CASE Statements
+- Conditional Aggregation
+- Date & Time Analysis
+- Ranking
 
 Analysis covers sales, customers, products, inventory, orders, payments, deliveries, returns, and operations.
+
+---
 
 ## Power BI Dashboard
 
 The dashboard consists of five analytical pages:
 
-*1. Executive Sales Overview*
-
+**1. Executive Sales Overview**
 Revenue, orders, customers, AOV, sales trends, category performance, top products, and area-level revenue.
 
-*2. Operations & Delivery*
-
+**2. Operations & Delivery**
 Delivery performance, cancellations, returns, on-time delivery, and peak vs non-peak operations.
 
-*3. Customer & Product Insights*
-
+**3. Customer & Product Insights**
 Customer status, membership, ordering frequency, basket size, and preferred ordering behavior.
 
-*4. Order & Payment Behavior*
-
+**4. Order & Payment Behavior**
 Payment methods, order sources, monthly order volume, payment status, and peak-hour ordering patterns.
 
-*5. Product & Inventory Insights*
-
+**5. Product & Inventory Insights**
 Inventory health, stock availability, category-level inventory, low-stock risk, and top products by current stock.
 
-## Key Highlights
--Built an 8-table quick-commerce analytics ecosystem using Python-generated synthetic data.
--Generated and analyzed 300,000 orders and 873,055 order-detail records.
--Designed and loaded the data into PostgreSQL for business analysis.
--Developed 50 business-oriented SQL problems across 10 analytical modules.
--Built a relational Power BI data model with DAX-based KPIs.
--Developed a 5-page Power BI dashboard covering sales, operations, customer behavior, payments, and inventory.
+---
 
 ## Tech Stack
 
 Python | Pandas | PostgreSQL | SQL | Power BI | DAX | GitHub
+
+---
+
+## Project Structure
+
+```text
+SwiftBasket-analytics/
+│
+├── Data/
+├── Data Generation/
+├── sql/
+├── dashboard screenshots/
+│   ├── 01_Executive_Sales_Overview.png
+│   ├── 02_Operations_Delivery.png
+│   ├── 03_Customer_Product_Insights.png
+│   ├── 04_Order_Payment_Behavior.png
+│   └── 05_Product_Inventory_Insight.png
+│
+├── PROJECT_PROGRESS.md
+└── README.md
+```
+
+> Note: The Power BI `.pbix` file is not included due to GitHub file-size limitations.
+
+---
+
+## Key Highlights
+
+- Built an 8-table quick-commerce analytics ecosystem using Python-generated synthetic data.
+- Generated and analyzed 300,000 orders and 873,055 order-detail records.
+- Designed and loaded the data into PostgreSQL for business analysis.
+- Developed 50 business-oriented SQL problems across 10 analytical modules.
+- Built a relational Power BI data model with DAX-based KPIs.
+- Developed a 5-page Power BI dashboard covering sales, operations, customer behavior, payments, and inventory.
+
+---
+
+## Project Status
+
+**Completed**
+
+- ✅ Data Generation
+- ✅ PostgreSQL Database
+- ✅ SQL Analysis — 50/50
+- ✅ Power BI Data Model
+- ✅ DAX Measures
+- ✅ 5-Page Power BI Dashboard
+- ✅ Dashboard Screenshots
