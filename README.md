@@ -28,3 +28,21 @@ SQL Business Analysis
 Power BI Data Model
         ↓
 Interactive Dashboard
+
+## SQL Analysis
+
+50/50 business SQL problems completed across 10 modules.
+
+**Key concepts used:**
+
+-Multi-table Joins
+-CTEs
+-Window Functions
+-Aggregations
+-Subqueries
+-CASE Statements
+-Conditional Aggregation
+-Date & Time Analysis
+-Ranking
+
+Analysis covers sales, customers, products, inventory, orders, payments, deliveries, returns, and operations.
