@@ -27,7 +27,7 @@ SQL Business Analysis
         ↓
 Power BI Data Model
         ↓
-Interactive Dashboard
+Interactive Dashboard```
 
 ## SQL Analysis
 
@@ -46,3 +46,39 @@ Interactive Dashboard
 -Ranking
 
 Analysis covers sales, customers, products, inventory, orders, payments, deliveries, returns, and operations.
+
+## Power BI Dashboard
+
+The dashboard consists of five analytical pages:
+
+*1. Executive Sales Overview*
+
+Revenue, orders, customers, AOV, sales trends, category performance, top products, and area-level revenue.
+
+*2. Operations & Delivery*
+
+Delivery performance, cancellations, returns, on-time delivery, and peak vs non-peak operations.
+
+*3. Customer & Product Insights*
+
+Customer status, membership, ordering frequency, basket size, and preferred ordering behavior.
+
+*4. Order & Payment Behavior*
+
+Payment methods, order sources, monthly order volume, payment status, and peak-hour ordering patterns.
+
+*5. Product & Inventory Insights*
+
+Inventory health, stock availability, category-level inventory, low-stock risk, and top products by current stock.
+
+## Key Highlights
+-Built an 8-table quick-commerce analytics ecosystem using Python-generated synthetic data.
+-Generated and analyzed 300,000 orders and 873,055 order-detail records.
+-Designed and loaded the data into PostgreSQL for business analysis.
+-Developed 50 business-oriented SQL problems across 10 analytical modules.
+-Built a relational Power BI data model with DAX-based KPIs.
+-Developed a 5-page Power BI dashboard covering sales, operations, customer behavior, payments, and inventory.
+
+## Tech Stack
+
+Python | Pandas | PostgreSQL | SQL | Power BI | DAX | GitHub
